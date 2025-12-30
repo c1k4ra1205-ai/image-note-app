@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Note</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js');
+    });
+  }
+</script>
+
+</head>
+
+<body>
+
+<header>
+  <button id="listBtn">一覧</button>
+  <input type="file" id="fileInput" multiple accept="image/*">
+  <button id="drawBtn">✍</button>
+</header>
+
+<!-- 一覧ページ -->
+<div id="listPage">
+  <div id="thumbGrid"></div>
+</div>
+
+<!-- 編集ページ -->
+<div id="editPage" class="hidden">
+  <canvas id="canvas"></canvas>
+
+  <!-- 選択肢パネル -->
+  <div id="choicePanel" class="closed">
+    <h3>選択肢</h3>
+    <div id="choiceList"></div>
+    <button id="addGroupBtn">＋カテゴリ追加</button>
+  </div>
+
+  <!-- ツールバー -->
+  <div id="toolBar" class="hidden">
+    <div class="colorBtn black"></div>
+    <div class="colorBtn red"></div>
+    <div class="colorBtn blue"></div>
+    <input type="range" id="penSize" min="2" max="14" value="4">
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
