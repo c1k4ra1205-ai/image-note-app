@@ -154,3 +154,25 @@ canvas.addEventListener('touchend', () => {
   isDrawing = false;
   lastDistance = null;
 });
+// ===============================
+// 画像読み込み（file input）
+// ===============================
+const fileInput = document.getElementById('fileInput');
+
+fileInput.addEventListener('change', e => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    baseImage.src = reader.result;
+
+    // 状態リセット
+    scale = 1;
+    offsetX = 0;
+    offsetY = 0;
+    strokes.length = 0;
+  };
+  reader.readAsDataURL(file);
+});
+
